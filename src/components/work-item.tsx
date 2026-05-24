@@ -63,6 +63,7 @@ export function WorkItem({
   technologies,
   href,
   image,
+  dataEvent,
 }: WorkItemProps) {
   const contentClassName = "block w-full min-w-0 py-3 text-sm"
 
@@ -70,6 +71,7 @@ export function WorkItem({
     <WorkItemContent
       title={title}
       date={date}
+      dataEvent={dataEvent}
       description={description}
       technologies={technologies}
       href={href}
@@ -107,6 +109,8 @@ export function WorkItem({
             render={
               <span className={cn(contentClassName, "cursor-default")} />
             }
+
+            data-event={dataEvent}
           >
             {content}
           </HoverCardTrigger>
