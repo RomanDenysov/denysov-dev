@@ -5,11 +5,31 @@ import "@/styles/global.css"
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Astro App</title>
+    <title>Roman Denysov - Software Engineer</title>
+<meta name="description" content="Software engineer building mobile apps, web applications, and internal tools. Available for projects." />
+
+<!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Roman Denysov - Software Engineer" />
+  <meta property="og:description" content="Software engineer building mobile apps, web applications, and internal tools. Available for projects." />
+  <meta property="og:url" content="https://denysov.dev" />
+  <meta property="og:image" content="https://denysov.dev/og-image.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Roman Denysov - Software Engineer" />
+  <meta name="twitter:description" content="Software engineer building mobile apps, web applications, and internal tools." />
+  <meta name="twitter:image" content="https://denysov.dev/og-image.png" />
   </head>
   <body>
-    <slot />
+    <main class="max-w-4xl mx-auto min-h-svh p-6">
+      <slot />
+    </main>
+      <script>
+      import { inject } from '@vercel/analytics';
+      inject();
+    </script>
   </body>
 </html>
