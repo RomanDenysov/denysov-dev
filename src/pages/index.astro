@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/main.astro"
 import { buttonVariants } from "@/components/ui/button"
-import { WorkItem } from "@/components/work-item"
+import WorkItem from "@/components/work-item.astro"
 import CalEmbed from "@/components/cal-embed"
 import { cn } from "@/lib/utils"
 
@@ -70,8 +70,13 @@ const workItems = [
         <p class="text-sm text-pretty leading-relaxed text-muted-foreground">Building mobile apps, web applications, and internal tools. From local bakeries selling artisan bread to enterprise mobile teams.</p>
       </div>
       <div class="flex flex-col gap-2 w-fit">
-        <a data-event="book_call_hero" class={cn(buttonVariants())} href="#book-a-call">Book a call</a>
-        <a data-event="email_link_hero" class={cn(buttonVariants({ variant: "link" }),"text-muted-foreground text-sm tracking-tight font-normal")} href="mailto:hello@denysov.dev">hello@denysov.dev</a>
+        <p class="text-muted-foreground text-sm tracking-tight font-normal">Contact me via <a data-event="email_link_hero" class='underline hover:text-primary' href="mailto:hello@denysov.dev">email</a> or book a <a 
+          data-event="book_call_hero"
+          href="https://cal.com/denysov/60min"
+          class="underline hover:text-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >paid consultation</a></p>
       </div>
     </div>
 
@@ -79,45 +84,18 @@ const workItems = [
       <h2 class="text-sm font-light mb-5 text-muted-foreground uppercase tracking-wide">Selected work</h2>
       <ul class="w-full border-t border-border">
         {workItems.map((item) => (
-          <WorkItem client:visible {...item} />
+          <WorkItem {...item} />
         ))}
       </ul>
     </div>
-
-    <div class="w-full" id="book-a-call">
-      <h2 class="text-sm font-light mb-5 text-muted-foreground uppercase tracking-wide">Book a call</h2>
-      <div class="border border-border rounded-md p-1 bg-muted">
-      <CalEmbed client:only="react" />
-      </div>
-    </div>
-
-<footer>
-  <hr class="mb-4"/>
-    <div class="flex items-center gap-5 justify-between">
-      <div class="flex items-center gap-3">
-        <span class="text-muted-foreground/60 text-xs tracking-wide">© 2026 Roman Denysov</span>
-      </div>
-      <div class="flex items-center gap-2 text-sm text-muted-foreground/80 tracking-tight">
-        <a data-event="email_link_footer" class="hover:underline hover:text-primary hover:underline-offset-4" href="mailto:hello@denysov.dev">
-          hello@denysov.dev
-        </a>
-        <a rel="noopener noreferrer" data-event="github_link" class="hover:underline hover:text-primary hover:underline-offset-4" href="https://github.com/denysov" target="_blank">
-          GitHub
-        </a>
-        <a rel="noopener noreferrer" data-event="x_link" class="hover:underline hover:text-primary hover:underline-offset-4" href="https://x.com/denysov" target="_blank">
-          X
-        </a>
-        <a rel="noopener noreferrer" data-event="linkedin_link" class="hover:underline hover:text-primary hover:underline-offset-4" href="https://linkedin.com/in/denysov" target="_blank">
-          LinkedIn
-        </a>
-      </div>
-    </div>
-  </footer>
   </div>
 </Layout>
 
 <script>
   import { track } from '@vercel/analytics';
+  import { initWorkItemPreviews } from '@/scripts/work-item-preview';
+
+  initWorkItemPreviews();
 
   document.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;
