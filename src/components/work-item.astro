@@ -1,0 +1,149 @@
+---
+interface Props {
+  title: string
+  date: string
+  description: string
+  technologies?: string[]
+  href?: string
+  image?: string
+  dataEvent?: string
+}
+
+const { title, date, description, technologies, href, image, dataEvent } = Astro.props
+
+function imageSrc(path: string) {
+  return path.startsWith("/") ? path : `/${path}`
+}
+
+const contentClass = "block w-full min-w-0 py-3 text-sm"
+const hasTechnologies = technologies && technologies.length > 0
+const resolvedImage = image ? imageSrc(image) : undefined
+---
+
+<li class="border-b border-border">
+  {
+    resolvedImage ? (
+      <div class="relative" data-work-preview>
+        {href ? (
+          <a
+            href={href}
+            class:list={[contentClass, "text-foreground no-underline hover:no-underline"]}
+            data-work-preview-trigger
+          >
+            <div class="flex w-full min-w-0 flex-col gap-1">
+              <div class="flex min-w-0 items-baseline gap-x-2">
+                <span class="shrink-0 font-medium">{title}</span>
+                <span class="shrink-0 text-muted-foreground"> — </span>
+                <span class="min-w-0 flex-1 text-muted-foreground">{description}</span>
+                <span class="shrink-0 pl-4 tabular-nums text-muted-foreground/60">{date}</span>
+              </div>
+              {hasTechnologies && (
+                <p class="text-muted-foreground/60">{technologies!.join(" · ")}</p>
+              )}
+            </div>
+          </a>
+        ) : (
+          <span
+            class:list={[contentClass, "cursor-default"]}
+            data-work-preview-trigger
+            data-event={dataEvent}
+          >
+            <div class="flex w-full min-w-0 flex-col gap-1">
+              <div class="flex min-w-0 items-baseline gap-x-2">
+                <span class="shrink-0 font-medium">{title}</span>
+                <span class="shrink-0 text-muted-foreground"> — </span>
+                <span class="min-w-0 flex-1 text-muted-foreground">{description}</span>
+                <span class="shrink-0 pl-4 tabular-nums text-muted-foreground/60">{date}</span>
+              </div>
+              {hasTechnologies && (
+                <p class="text-muted-foreground/60">{technologies!.join(" · ")}</p>
+              )}
+            </div>
+          </span>
+        )}
+        <div
+          class="work-item-preview-host pointer-events-none fixed z-50"
+          data-work-preview-popup
+          role="tooltip"
+          aria-hidden="true"
+          hidden
+        >
+          <div class="work-item-preview-panel w-auto rounded-lg bg-popover p-1 text-popover-foreground shadow-md ring-1 ring-foreground/10">
+            <img
+              src={resolvedImage}
+              alt={title}
+              width={280}
+              height={175}
+              class="rounded-md object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div class={contentClass}>
+        <div class="flex w-full min-w-0 flex-col gap-1">
+          <div class="flex min-w-0 items-baseline gap-x-2">
+            {href ? (
+              <a
+                data-event={dataEvent}
+                href={href}
+                class="shrink-0 font-medium hover:underline"
+              >
+                {title}
+              </a>
+            ) : (
+              <span class="shrink-0 font-medium">{title}</span>
+            )}
+            <span class="shrink-0 text-muted-foreground"> — </span>
+            <span class="min-w-0 flex-1 text-muted-foreground">{description}</span>
+            <span class="shrink-0 pl-4 tabular-nums text-muted-foreground/60">{date}</span>
+          </div>
+          {hasTechnologies && (
+            <p class="text-muted-foreground/60">{technologies!.join(" · ")}</p>
+          )}
+        </div>
+      </div>
+    )
+  }
+</li>
+
+<style>
+  .work-item-preview-host {
+    isolation: isolate;
+  }
+
+  .work-item-preview-panel {
+    transform-origin: bottom center;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .work-item-preview-panel {
+      transition:
+        opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .work-item-preview-host:not([data-open]) .work-item-preview-panel {
+      opacity: 0;
+      transform: scale(0.95) translate3d(0, 4px, 0);
+    }
+
+    .work-item-preview-host[data-open] .work-item-preview-panel {
+      opacity: 1;
+      transform: scale(1) translate3d(0, 0, 0);
+      will-change: transform;
+    }
+
+    .work-item-preview-host[data-instant] .work-item-preview-panel {
+      transition: none;
+      will-change: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .work-item-preview-panel {
+      transition: none;
+      will-change: auto;
+    }
+  }
+</style>
