@@ -1,17 +1,129 @@
 ---
 import Layout from "@/layouts/main.astro"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
+import { WorkItem } from "@/components/work-item"
+import CalEmbed from "@/components/cal-embed"
+import { cn } from "@/lib/utils"
+
+const workItems = [
+  {
+    title: "Pekáreň Kromka",
+    date: "2024",
+    description: "Artisan bakery e-commerce with custom CRM and ERP integration",
+    technologies: ["Next.js", "TypeScript","Drizzle ORM", "PostgreSQL"],
+    href: "https://www.pekarenkromka.sk",
+    image: "/pekaren-kromka.png",
+    dataEvent: "pekaren_kromka_link",
+  },
+  {
+    title: "QR Platby",
+    date: "2025",
+    description: "Slovak SEPA QR payment generator for small businesses",
+    technologies: ["Next.js", "TypeScript", "Vercel"],
+    href: "https://qr-platby.com",
+    image: "/qr-platby.png",
+    dataEvent: "qr_platby_link",
+  },
+  {
+    title: "Consentify SDK",
+    date: "2025",
+    description: "Open-source consent SDK for React and vanilla JS",
+    technologies: ["TypeScript"],
+    image: "/consentify-dev.png",
+    dataEvent: "consentify_sdk_link",
+  },
+  {
+    title: "Consentify",
+    date: "2026",
+    description: "GDPR cookie consent management for EU businesses",
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Turborepo"],
+    href: "https://consentify.dev",
+    image: "/consentify-dev.png",
+    dataEvent: "consentify_link",
+  },
+  {
+    title: "Zwicker | ZW©KR",
+    date: "in progress",
+    description: "Restaurant and boutique guesthouse site with multilingual CMS",
+    technologies: ["Next.js", "TypeScript", "Payload CMS"],
+    // href: "https://www.zwicker.sk",
+    dataEvent: "zwicker_link",
+  },
+  {
+    title: "localhost s.r.o",
+    date: "present",
+    description: "React Native development for Fortune 500 industrial manufacturer",
+    technologies: ["React Native", "TypeScript", "Azure DevOps"],
+    href: "https://www.localhost.company/",
+    dataEvent: "localhost_link",
+  },
+]
 ---
 
 <Layout>
-  <div class="flex min-h-svh p-6">
-    <div class="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-      <div>
-        <h1 class="font-medium">Project ready!</h1>
-        <p>You may now add components and start building.</p>
-        <p>We've already added the button component for you.</p>
-        <Button client:load className="mt-2">Button</Button>
+  <div class="flex w-full min-w-0 flex-col gap-20 text-sm leading-loose">
+    <div class="pt-20">
+      <div class="flex items-center gap-2 mb-4"> <span class="bg-green-500 size-2 rounded-full inline-block animate-pulse"/> <span class="text-muted-foreground tracking-tighter font-light text-xs font-mono">Available for projects</span></div>
+      <h1 class="font-medium text-2xl mb-2">Roman Denysov</h1>
+      <div class="mb-5">
+        <p class="text-lg">Software Engineer</p>
+        <p class="text-sm text-pretty leading-relaxed text-muted-foreground">Building mobile apps, web applications, and internal tools. From local bakeries selling artisan bread to enterprise mobile teams.</p>
+      </div>
+      <div class="flex flex-col gap-2 w-fit">
+        <a data-event="book_call_hero" class={cn(buttonVariants())} href="#book-a-call">Book a call</a>
+        <a data-event="email_link_hero" class={cn(buttonVariants({ variant: "link" }),"text-muted-foreground text-sm tracking-tight font-normal")} href="mailto:hello@denysov.dev">hello@denysov.dev</a>
       </div>
     </div>
+
+    <div class="w-full">
+      <h2 class="text-sm font-light mb-5 text-muted-foreground uppercase tracking-wide">Selected work</h2>
+      <ul class="w-full border-t border-border">
+        {workItems.map((item) => (
+          <WorkItem client:visible {...item} />
+        ))}
+      </ul>
+    </div>
+
+    <div class="w-full" id="book-a-call">
+      <h2 class="text-sm font-light mb-5 text-muted-foreground uppercase tracking-wide">Book a call</h2>
+      <div class="border border-border rounded-md p-1 bg-muted">
+      <CalEmbed client:only="react" />
+      </div>
+    </div>
+
+<footer>
+  <hr class="mb-4"/>
+    <div class="flex items-center gap-5 justify-between">
+      <div class="flex items-center gap-3">
+        <span class="text-muted-foreground/60 text-xs tracking-wide">© 2026 Roman Denysov</span>
+      </div>
+      <div class="flex items-center gap-2 text-sm text-muted-foreground/80 tracking-tight">
+        <a data-event="email_link_footer" class="hover:underline hover:text-primary hover:underline-offset-4" href="mailto:hello@denysov.dev">
+          hello@denysov.dev
+        </a>
+        <a rel="noopener noreferrer" data-event="github_link" class="hover:underline hover:text-primary hover:underline-offset-4" href="https://github.com/denysov" target="_blank">
+          GitHub
+        </a>
+        <a rel="noopener noreferrer" data-event="x_link" class="hover:underline hover:text-primary hover:underline-offset-4" href="https://x.com/denysov" target="_blank">
+          X
+        </a>
+        <a rel="noopener noreferrer" data-event="linkedin_link" class="hover:underline hover:text-primary hover:underline-offset-4" href="https://linkedin.com/in/denysov" target="_blank">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </footer>
   </div>
 </Layout>
+
+<script>
+  import { track } from '@vercel/analytics';
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    const el = target.closest('[data-event]');
+    if (!el) return;
+    const eventName = el.getAttribute('data-event');
+    if (eventName) track(eventName);
+  });
+</script>
