@@ -9,25 +9,69 @@ import "@/styles/global.css"
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Roman Denysov - Software Engineer</title>
-<meta name="description" content="Software engineer building mobile apps, web applications, and internal tools. Available for projects." />
+    <meta name="description" content="Software engineer building mobile apps, web applications, and internal tools. Available for projects." />
 
-<!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Roman Denysov - Software Engineer" />
-  <meta property="og:description" content="Software engineer building mobile apps, web applications, and internal tools. Available for projects." />
-  <meta property="og:url" content="https://denysov.dev" />
-  <meta property="og:image" content="https://denysov.dev/og-image.png" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Roman Denysov - Software Engineer" />
+    <meta property="og:description" content="Software engineer building mobile apps, web applications, and internal tools. Available for projects." />
+    <meta property="og:url" content="https://denysov.dev" />
+    <meta property="og:image" content="https://denysov.dev/og-image.png" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Roman Denysov - Software Engineer" />
-  <meta name="twitter:description" content="Software engineer building mobile apps, web applications, and internal tools." />
-  <meta name="twitter:image" content="https://denysov.dev/og-image.png" />
-  <Analytics />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Roman Denysov - Software Engineer" />
+    <meta name="twitter:description" content="Software engineer building mobile apps, web applications, and internal tools." />
+    <meta name="twitter:image" content="https://denysov.dev/og-image.png" />
+    <Analytics />
   </head>
-  <body>
-    <main class="max-w-4xl mx-auto min-h-svh p-6">
+  <body class="min-h-svh flex flex-col">
+    <main class="mx-auto w-full max-w-4xl flex-1 p-6">
       <slot />
     </main>
+    <footer class="mx-auto w-full max-w-4xl p-6">
+      <hr class="mb-4" />
+      <div class="flex items-center justify-between gap-5">
+        <div class="flex items-center gap-3">
+          <span class="text-xs tracking-wide text-muted-foreground">© 2026 Roman Denysov</span>
+        </div>
+        <div class="flex items-center gap-2 text-sm tracking-tight text-muted-foreground">
+          <a
+            data-event="email_link_footer"
+            class="hover:text-primary hover:underline hover:underline-offset-4"
+            href="mailto:hello@denysov.dev"
+          >
+            hello@denysov.dev
+          </a>
+          <a
+            rel="noopener noreferrer"
+            data-event="github_link"
+            class="hover:text-primary hover:underline hover:underline-offset-4"
+            href="https://github.com/denysov"
+            target="_blank"
+          >
+            GitHub
+          </a>
+          <a
+            rel="noopener noreferrer"
+            data-event="x_link"
+            class="hover:text-primary hover:underline hover:underline-offset-4"
+            href="https://x.com/denysov"
+            target="_blank"
+          >
+            X
+          </a>
+          <a
+            rel="noopener noreferrer"
+            data-event="linkedin_link"
+            class="hover:text-primary hover:underline hover:underline-offset-4"
+            href="https://linkedin.com/in/denysov"
+            target="_blank"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

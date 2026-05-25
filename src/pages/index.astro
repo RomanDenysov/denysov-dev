@@ -82,7 +82,7 @@ const workItems = [
 
     <div class="w-full">
       <h2 class="text-sm font-light mb-5 text-muted-foreground uppercase tracking-wide">Selected work</h2>
-      <ul class="w-full border-t border-border">
+      <ul class="w-full overflow-visible border-t border-border">
         {workItems.map((item) => (
           <WorkItem {...item} />
         ))}
@@ -93,9 +93,6 @@ const workItems = [
 
 <script>
   import { track } from '@vercel/analytics';
-  import { initWorkItemPreviews } from '@/scripts/work-item-preview';
-
-  initWorkItemPreviews();
 
   document.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;

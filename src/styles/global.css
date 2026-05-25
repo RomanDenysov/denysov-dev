@@ -132,4 +132,10 @@
   scroll-margin-top: 2rem;
 }
 
+@media (hover: none), (pointer: coarse) {
+  .work-item-preview {
+    display: none;
+  }
+}
+
 }
