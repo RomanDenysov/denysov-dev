@@ -11,90 +11,49 @@ interface Props {
 
 const { title, date, description, technologies, href, image, dataEvent } = Astro.props
 
-function imageSrc(path: string) {
-  return path.startsWith("/") ? path : `/${path}`
-}
-
-const contentClass = "block w-full min-w-0 py-3 text-sm"
-const hasTechnologies = technologies && technologies.length > 0
-const resolvedImage = image ? imageSrc(image) : undefined
-const previewClass =
-  "work-item-preview pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 w-[280px] -translate-x-1/2 translate-y-1 rounded-lg bg-popover p-1 opacity-0 shadow-md ring-1 ring-foreground/10 transition-[opacity,transform] duration-150 ease-out delay-100 group-hover:opacity-100 group-hover:translate-y-0 group-hover:delay-200"
+const resolvedImage = image ? (image.startsWith("/") ? image : `/${image}`) : undefined
 ---
 
-<li class="relative border-b border-border">
-  {
-    resolvedImage ? (
-      <div class="group relative">
-        {href ? (
+<li class="group relative border-b border-border">
+  <div class="flex w-full min-w-0 flex-col gap-1 py-3 text-sm">
+    <div class="flex min-w-0 items-baseline gap-x-2">
+      {
+        href ? (
           <a
+            data-event={dataEvent}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            class:list={[contentClass, "text-foreground no-underline hover:no-underline"]}
+            class="shrink-0 font-medium after:absolute after:inset-0"
           >
-            <div class="flex w-full min-w-0 flex-col gap-1">
-              <div class="flex min-w-0 items-baseline gap-x-2">
-                <span class="shrink-0 font-medium">{title}</span>
-                <span class="shrink-0 text-muted-foreground"> — </span>
-                <span class="min-w-0 flex-1 text-muted-foreground">{description}</span>
-                <span class="shrink-0 pl-4 tabular-nums text-muted-foreground/60">{date}</span>
-              </div>
-              {hasTechnologies && (
-                <p class="text-muted-foreground/60">{technologies!.join(" · ")}</p>
-              )}
-            </div>
+            {title}
           </a>
         ) : (
-          <span class:list={[contentClass, "cursor-default"]} data-event={dataEvent}>
-            <div class="flex w-full min-w-0 flex-col gap-1">
-              <div class="flex min-w-0 items-baseline gap-x-2">
-                <span class="shrink-0 font-medium">{title}</span>
-                <span class="shrink-0 text-muted-foreground"> — </span>
-                <span class="min-w-0 flex-1 text-muted-foreground">{description}</span>
-                <span class="shrink-0 pl-4 tabular-nums text-muted-foreground/60">{date}</span>
-              </div>
-              {hasTechnologies && (
-                <p class="text-muted-foreground/60">{technologies!.join(" · ")}</p>
-              )}
-            </div>
-          </span>
-        )}
-        <div class={previewClass} aria-hidden="true">
-          <img
-            src={resolvedImage}
-            alt=""
-            width={280}
-            height={175}
-            class="block rounded-md object-cover"
-          />
-        </div>
-      </div>
-    ) : (
-      <div class={contentClass}>
-        <div class="flex w-full min-w-0 flex-col gap-1">
-          <div class="flex min-w-0 items-baseline gap-x-2">
-            {href ? (
-              <a
-                data-event={dataEvent}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="shrink-0 font-medium hover:underline"
-              >
-                {title}
-              </a>
-            ) : (
-              <span class="shrink-0 font-medium">{title}</span>
-            )}
-            <span class="shrink-0 text-muted-foreground"> — </span>
-            <span class="min-w-0 flex-1 text-muted-foreground">{description}</span>
-            <span class="shrink-0 pl-4 tabular-nums text-muted-foreground/60">{date}</span>
-          </div>
-          {hasTechnologies && (
-            <p class="text-muted-foreground/60">{technologies!.join(" · ")}</p>
-          )}
-        </div>
+          <span class="shrink-0 font-medium">{title}</span>
+        )
+      }
+      <span class="shrink-0 text-muted-foreground"> — </span>
+      <span class="min-w-0 flex-1 text-muted-foreground">{description}</span>
+      <span class="shrink-0 pl-4 tabular-nums text-muted-foreground/60">{date}</span>
+    </div>
+    {technologies && technologies.length > 0 && (
+      <p class="text-muted-foreground/60">{technologies.join(" · ")}</p>
+    )}
+  </div>
+  {
+    resolvedImage && (
+      <div
+        class="work-item-preview pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 w-[280px] -translate-x-1/2 translate-y-1 rounded-lg bg-popover p-1 opacity-0 shadow-md ring-1 ring-foreground/10 transition-[opacity,transform] duration-150 ease-out delay-100 group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-200"
+        aria-hidden="true"
+      >
+        <img
+          src={resolvedImage}
+          alt=""
+          width={280}
+          height={175}
+          loading="lazy"
+          class="block rounded-md object-cover"
+        />
       </div>
     )
   }
