@@ -40,10 +40,10 @@ const workItems = [
   },
   {
     title: "Zwicker | ZW©KR",
-    date: "in progress",
+    date: "2026",
     description: "Restaurant and boutique guesthouse site with multilingual CMS",
-    technologies: ["Next.js", "TypeScript", "Payload CMS"],
-    // href: "https://www.zwicker.sk",
+    technologies: ["Next.js", "TypeScript", "Payload CMS", "PostgreSQL"],
+    href: "https://www.zwicker.sk",
     dataEvent: "zwicker_link",
   },
   {
@@ -79,7 +79,7 @@ const workItems = [
 
     <div class="w-full">
       <h2 class="text-sm font-light mb-5 text-muted-foreground uppercase tracking-wide">Selected work</h2>
-      <ul class="w-full overflow-visible border-t border-border">
+      <ul data-section="work" class="w-full overflow-visible border-t border-border">
         {workItems.map((item) => (
           <WorkItem {...item} />
         ))}
@@ -87,15 +87,3 @@ const workItems = [
     </div>
   </div>
 </Layout>
-
-<script>
-  import { track } from '@vercel/analytics';
-
-  document.addEventListener('click', (event) => {
-    const target = event.target as HTMLElement;
-    const el = target.closest('[data-event]');
-    if (!el) return;
-    const eventName = el.getAttribute('data-event');
-    if (eventName) track(eventName);
-  });
-</script>

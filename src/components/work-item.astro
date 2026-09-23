@@ -14,7 +14,7 @@ const { title, date, description, technologies, href, image, dataEvent } = Astro
 const resolvedImage = image ? (image.startsWith("/") ? image : `/${image}`) : undefined
 ---
 
-<li class="group relative border-b border-border">
+<li data-work={title} class="group relative border-b border-border">
   <div class="flex w-full min-w-0 flex-col gap-1 py-3 text-sm">
     <div class="flex min-w-0 items-baseline gap-x-2">
       {
