@@ -1,51 +1,11 @@
 ---
 import Layout from "@/layouts/main.astro"
 import WorkItem from "@/components/work-item.astro"
+import consentifyImage from "@/assets/consentify-dev.png"
+import kromkaImage from "@/assets/pekaren-kromka.png"
+import qrPlatbyImage from "@/assets/qr-platby.png"
 
 const workItems = [
-  {
-    title: "Pekáreň Kromka",
-    date: "2024",
-    description: "Artisan bakery e-commerce with custom CRM and ERP integration",
-    technologies: ["Next.js", "TypeScript","Drizzle ORM", "PostgreSQL"],
-    href: "https://www.pekarenkromka.sk",
-    image: "/pekaren-kromka.png",
-    dataEvent: "pekaren_kromka_link",
-  },
-  {
-    title: "QR Platby",
-    date: "2025",
-    description: "Slovak SEPA QR payment generator for small businesses",
-    technologies: ["Next.js", "TypeScript", "Vercel"],
-    href: "https://qr-platby.com",
-    image: "/qr-platby.png",
-    dataEvent: "qr_platby_link",
-  },
-  {
-    title: "Consentify SDK",
-    date: "2025",
-    description: "Open-source consent SDK for React and vanilla JS",
-    technologies: ["TypeScript"],
-    image: "/consentify-dev.png",
-    dataEvent: "consentify_sdk_link",
-  },
-  {
-    title: "Consentify",
-    date: "2026",
-    description: "GDPR cookie consent management for EU businesses",
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Turborepo"],
-    href: "https://consentify.dev",
-    image: "/consentify-dev.png",
-    dataEvent: "consentify_link",
-  },
-  {
-    title: "Zwicker | ZW©KR",
-    date: "in progress",
-    description: "Restaurant and boutique guesthouse site with multilingual CMS",
-    technologies: ["Next.js", "TypeScript", "Payload CMS"],
-    // href: "https://www.zwicker.sk",
-    dataEvent: "zwicker_link",
-  },
   {
     title: "localhost s.r.o",
     date: "present",
@@ -54,32 +14,76 @@ const workItems = [
     href: "https://www.localhost.company/",
     dataEvent: "localhost_link",
   },
+  {
+    title: "Pekáreň Kromka",
+    date: "2024",
+    description: "Artisan bakery e-commerce with custom CRM and ERP integration",
+    technologies: ["Next.js", "TypeScript","Drizzle ORM", "PostgreSQL"],
+    href: "https://www.pekarenkromka.sk",
+    image: kromkaImage,
+    dataEvent: "pekaren_kromka_link",
+  },
+  {
+    title: "QR Platby",
+    date: "2025",
+    description: "Slovak SEPA QR payment generator for small businesses",
+    technologies: ["Next.js", "TypeScript", "Vercel"],
+    href: "https://qr-platby.com",
+    image: qrPlatbyImage,
+    dataEvent: "qr_platby_link",
+  },
+  {
+    title: "Consentify SDK",
+    date: "2025",
+    description: "Open-source consent SDK for React and vanilla JS",
+    technologies: ["TypeScript"],
+    image: consentifyImage,
+    dataEvent: "consentify_sdk_link",
+  },
+  {
+    title: "Consentify",
+    date: "2026",
+    description: "GDPR cookie consent management for EU businesses",
+    technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Turborepo"],
+    href: "https://consentify.dev",
+    image: consentifyImage,
+    dataEvent: "consentify_link",
+  },
+  {
+    title: "Zwicker | ZW©KR",
+    date: "2026",
+    description: "Restaurant and boutique guesthouse site with multilingual CMS",
+    technologies: ["Next.js", "TypeScript", "Payload CMS", "PostgreSQL"],
+    href: "https://www.zwicker.sk",
+    dataEvent: "zwicker_link",
+  },
 ]
 ---
 
 <Layout>
   <div class="flex w-full min-w-0 flex-col gap-20 text-sm leading-loose">
     <div class="pt-20">
-      <div class="flex items-center gap-2 mb-4"> <span class="bg-green-500 size-2 rounded-full inline-block animate-pulse"/> <span class="text-muted-foreground tracking-tighter font-light text-xs font-mono">Available for projects</span></div>
+      <p class="mb-4 text-muted-foreground tracking-tighter font-light text-xs font-mono">Prešov, Slovakia</p>
       <h1 class="font-medium text-2xl mb-2">Roman Denysov</h1>
       <div class="mb-5">
         <p class="text-lg">Software Engineer</p>
-        <p class="text-sm text-pretty leading-relaxed text-muted-foreground">Building mobile apps, web applications, and internal tools. From local bakeries selling artisan bread to enterprise mobile teams.</p>
+        <p class="text-sm text-pretty leading-relaxed text-muted-foreground">React, React Native and Next.js. Building mobile apps for an enterprise industrial team, and web products for Slovak businesses.</p>
       </div>
-      <div class="flex flex-col gap-2 w-fit">
-        <p class="text-muted-foreground text-sm tracking-tight font-normal">Contact me via <a data-event="email_link_hero" class='underline hover:text-primary' href="mailto:hello@denysov.dev">email</a> or book a <a 
-          data-event="book_call_hero"
-          href="https://cal.com/denysov/60min"
+      <p class="text-muted-foreground text-sm tracking-tight font-normal">
+        Reach me via <a data-event="email_link_hero" class="underline hover:text-primary" href="mailto:hello@denysov.dev">email</a>
+        or <a
+          data-event="linkedin_link_hero"
+          href="https://www.linkedin.com/in/roman-denysov/"
           class="underline hover:text-primary"
           target="_blank"
           rel="noopener noreferrer"
-        >paid consultation</a></p>
-      </div>
+        >LinkedIn</a>
+      </p>
     </div>
 
     <div class="w-full">
       <h2 class="text-sm font-light mb-5 text-muted-foreground uppercase tracking-wide">Selected work</h2>
-      <ul class="w-full overflow-visible border-t border-border">
+      <ul data-section="work" class="w-full overflow-visible border-t border-border">
         {workItems.map((item) => (
           <WorkItem {...item} />
         ))}
@@ -87,15 +91,3 @@ const workItems = [
     </div>
   </div>
 </Layout>
-
-<script>
-  import { track } from '@vercel/analytics';
-
-  document.addEventListener('click', (event) => {
-    const target = event.target as HTMLElement;
-    const el = target.closest('[data-event]');
-    if (!el) return;
-    const eventName = el.getAttribute('data-event');
-    if (eventName) track(eventName);
-  });
-</script>
