@@ -7,6 +7,14 @@ import qrPlatbyImage from "@/assets/qr-platby.png"
 
 const workItems = [
   {
+    title: "localhost s.r.o",
+    date: "present",
+    description: "React Native development for Fortune 500 industrial manufacturer",
+    technologies: ["React Native", "TypeScript", "Azure DevOps"],
+    href: "https://www.localhost.company/",
+    dataEvent: "localhost_link",
+  },
+  {
     title: "Pekáreň Kromka",
     date: "2024",
     description: "Artisan bakery e-commerce with custom CRM and ERP integration",
@@ -49,35 +57,28 @@ const workItems = [
     href: "https://www.zwicker.sk",
     dataEvent: "zwicker_link",
   },
-  {
-    title: "localhost s.r.o",
-    date: "present",
-    description: "React Native development for Fortune 500 industrial manufacturer",
-    technologies: ["React Native", "TypeScript", "Azure DevOps"],
-    href: "https://www.localhost.company/",
-    dataEvent: "localhost_link",
-  },
 ]
 ---
 
 <Layout>
   <div class="flex w-full min-w-0 flex-col gap-20 text-sm leading-loose">
     <div class="pt-20">
-      <div class="flex items-center gap-2 mb-4"> <span class="bg-green-500 size-2 rounded-full inline-block animate-pulse"/> <span class="text-muted-foreground tracking-tighter font-light text-xs font-mono">Available for projects</span></div>
+      <div class="flex items-center gap-2 mb-4"> <span class="bg-green-500 size-2 rounded-full inline-block animate-pulse"/> <span class="text-muted-foreground tracking-tighter font-light text-xs font-mono">Open to opportunities</span></div>
       <h1 class="font-medium text-2xl mb-2">Roman Denysov</h1>
       <div class="mb-5">
         <p class="text-lg">Software Engineer</p>
-        <p class="text-sm text-pretty leading-relaxed text-muted-foreground">Building mobile apps, web applications, and internal tools. From local bakeries selling artisan bread to enterprise mobile teams.</p>
+        <p class="text-sm text-pretty leading-relaxed text-muted-foreground">React, React Native and Next.js. Currently building mobile apps for an enterprise industrial team, and shipping web products for Slovak businesses on the side. Based in Slovakia, open to remote roles across the EU.</p>
       </div>
-      <div class="flex flex-col gap-2 w-fit">
-        <p class="text-muted-foreground text-sm tracking-tight font-normal">Contact me via <a data-event="email_link_hero" class='underline hover:text-primary' href="mailto:hello@denysov.dev">email</a> or book a <a 
-          data-event="book_call_hero"
-          href="https://cal.com/denysov/60min"
+      <p class="text-muted-foreground text-sm tracking-tight font-normal">
+        Reach me via <a data-event="email_link_hero" class="underline hover:text-primary" href="mailto:hello@denysov.dev">email</a>
+        or <a
+          data-event="linkedin_link_hero"
+          href="https://linkedin.com/in/denysov"
           class="underline hover:text-primary"
           target="_blank"
           rel="noopener noreferrer"
-        >paid consultation</a></p>
-      </div>
+        >LinkedIn</a>
+      </p>
     </div>
 
     <div class="w-full">
