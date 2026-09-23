@@ -1,6 +1,9 @@
 ---
 import Layout from "@/layouts/main.astro"
 import WorkItem from "@/components/work-item.astro"
+import consentifyImage from "@/assets/consentify-dev.png"
+import kromkaImage from "@/assets/pekaren-kromka.png"
+import qrPlatbyImage from "@/assets/qr-platby.png"
 
 const workItems = [
   {
@@ -9,7 +12,7 @@ const workItems = [
     description: "Artisan bakery e-commerce with custom CRM and ERP integration",
     technologies: ["Next.js", "TypeScript","Drizzle ORM", "PostgreSQL"],
     href: "https://www.pekarenkromka.sk",
-    image: "/pekaren-kromka.png",
+    image: kromkaImage,
     dataEvent: "pekaren_kromka_link",
   },
   {
@@ -18,7 +21,7 @@ const workItems = [
     description: "Slovak SEPA QR payment generator for small businesses",
     technologies: ["Next.js", "TypeScript", "Vercel"],
     href: "https://qr-platby.com",
-    image: "/qr-platby.png",
+    image: qrPlatbyImage,
     dataEvent: "qr_platby_link",
   },
   {
@@ -26,7 +29,7 @@ const workItems = [
     date: "2025",
     description: "Open-source consent SDK for React and vanilla JS",
     technologies: ["TypeScript"],
-    image: "/consentify-dev.png",
+    image: consentifyImage,
     dataEvent: "consentify_sdk_link",
   },
   {
@@ -35,7 +38,7 @@ const workItems = [
     description: "GDPR cookie consent management for EU businesses",
     technologies: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Turborepo"],
     href: "https://consentify.dev",
-    image: "/consentify-dev.png",
+    image: consentifyImage,
     dataEvent: "consentify_link",
   },
   {
