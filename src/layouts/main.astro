@@ -6,12 +6,12 @@ const siteUrl = "https://denysov.dev/"
 const ogImage = new URL("/og-image.png", siteUrl).href
 const title = "Roman Denysov - Software Engineer (React, React Native, Next.js)"
 const description =
-  "Software engineer in Slovakia working with React, React Native and Next.js. Mobile apps, web applications and internal tools. Open to remote roles across the EU."
+  "Software engineer in Slovakia working with React, React Native and Next.js. Mobile apps, web applications and internal tools."
 
 const sameAs = [
   "https://github.com/RomanDenysov",
   "https://x.com/RomanDenysov",
-  "https://linkedin.com/in/denysov",
+  "https://www.linkedin.com/in/roman-denysov/",
 ]
 
 const person = {
@@ -21,7 +21,7 @@ const person = {
   url: siteUrl,
   image: ogImage,
   jobTitle: "Software Engineer",
-  address: { "@type": "PostalAddress", addressCountry: "SK" },
+  address: { "@type": "PostalAddress", addressLocality: "Prešov", addressCountry: "SK" },
   knowsAbout: ["React", "React Native", "Next.js", "TypeScript"],
   sameAs,
 }
@@ -99,7 +99,7 @@ const person = {
             rel="noopener noreferrer"
             data-event="linkedin_link"
             class="hover:text-primary hover:underline hover:underline-offset-4"
-            href="https://linkedin.com/in/denysov"
+            href="https://www.linkedin.com/in/roman-denysov/"
             target="_blank"
           >
             LinkedIn
